@@ -1,0 +1,8 @@
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/convex_hull_3d_lib.dir
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/convex_hull_3d.dir
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/list_install_components.dir
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/install.dir
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/install/local.dir
+/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles/install/strip.dir

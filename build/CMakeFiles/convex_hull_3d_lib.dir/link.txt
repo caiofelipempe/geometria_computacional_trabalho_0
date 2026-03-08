@@ -1,0 +1,2 @@
+/usr/bin/ar qc libconvex_hull_3d_lib.a CMakeFiles/convex_hull_3d_lib.dir/app/src/public/convex_hull.cpp.o CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.o
+/usr/bin/ranlib libconvex_hull_3d_lib.a
