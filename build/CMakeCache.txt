@@ -378,9 +378,6 @@ convex_hull_3d_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 convex_hull_3d_SOURCE_DIR:STATIC=/mnt/c/Users/caiof/dev/convex_hull_3d
 
-//The directory containing a CMake configuration file for glm.
-glm_DIR:PATH=/home/caiof/vcpkg/installed/x64-linux/share/glm
-
 
 ########################
 # INTERNAL cache entries

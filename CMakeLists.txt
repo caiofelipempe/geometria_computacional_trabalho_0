@@ -11,7 +11,7 @@ find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
 
 # Find GLM
-find_package(glm CONFIG REQUIRED)
+# find_package(glm CONFIG REQUIRED)
 
 # Find CGAL
 find_package(CGAL REQUIRED)
@@ -55,7 +55,6 @@ target_link_libraries(${PROJECT_NAME}_lib
         SDL2::SDL2main
         OpenGL::GL
         OpenGL::GLU
-        glm::glm
         CGAL::CGAL
 )
 

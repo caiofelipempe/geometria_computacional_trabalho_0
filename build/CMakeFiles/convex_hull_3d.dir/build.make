@@ -98,7 +98,6 @@ convex_hull_3d: /usr/lib/x86_64-linux-gnu/libSDL2main.a
 convex_hull_3d: /usr/lib/x86_64-linux-gnu/libGLU.so
 convex_hull_3d: /usr/lib/x86_64-linux-gnu/libGLX.so
 convex_hull_3d: /usr/lib/x86_64-linux-gnu/libOpenGL.so
-convex_hull_3d: /home/caiof/vcpkg/installed/x64-linux/debug/lib/libglm.a
 convex_hull_3d: /home/caiof/vcpkg/installed/x64-linux/debug/lib/libgmpxx.a
 convex_hull_3d: /home/caiof/vcpkg/installed/x64-linux/debug/lib/libmpfr.a
 convex_hull_3d: /home/caiof/vcpkg/installed/x64-linux/debug/lib/libgmp.a

@@ -97,19 +97,35 @@ CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/renderer.cpp -o CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.s
 
+CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o: CMakeFiles/convex_hull_3d_lib.dir/flags.make
+CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o: /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/window.cpp
+CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o: CMakeFiles/convex_hull_3d_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o -MF CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o.d -o CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o -c /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/window.cpp
+
+CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/window.cpp > CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.i
+
+CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/window.cpp -o CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.s
+
 # Object files for target convex_hull_3d_lib
 convex_hull_3d_lib_OBJECTS = \
 "CMakeFiles/convex_hull_3d_lib.dir/app/src/public/convex_hull.cpp.o" \
-"CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.o"
+"CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.o" \
+"CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o"
 
 # External object files for target convex_hull_3d_lib
 convex_hull_3d_lib_EXTERNAL_OBJECTS =
 
 libconvex_hull_3d_lib.a: CMakeFiles/convex_hull_3d_lib.dir/app/src/public/convex_hull.cpp.o
 libconvex_hull_3d_lib.a: CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.o
+libconvex_hull_3d_lib.a: CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o
 libconvex_hull_3d_lib.a: CMakeFiles/convex_hull_3d_lib.dir/build.make
 libconvex_hull_3d_lib.a: CMakeFiles/convex_hull_3d_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libconvex_hull_3d_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/caiof/dev/convex_hull_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libconvex_hull_3d_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/convex_hull_3d_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/convex_hull_3d_lib.dir/link.txt --verbose=$(VERBOSE)
 

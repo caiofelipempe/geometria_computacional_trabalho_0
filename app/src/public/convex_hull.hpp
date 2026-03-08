@@ -12,6 +12,5 @@ extern std::vector<float> hullVertices;
 extern std::vector<std::vector<unsigned int>> hullFaces;
 
 std::tuple<std::vector<float>, std::vector<std::vector<unsigned int>>> computeConvexHull();
-void drawHull();
 
 #endif // CONVEX_HULL_HPP

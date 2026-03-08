@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/convex_hull_3d_lib.dir/app/src/public/convex_hull.cpp.o.d"
   "CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.o"
   "CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.o.d"
+  "CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o"
+  "CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o.d"
   "libconvex_hull_3d_lib.a"
   "libconvex_hull_3d_lib.pdb"
 )

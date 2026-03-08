@@ -1584,4 +1584,5 @@ CMakeFiles/convex_hull_3d.dir/app/main.cpp.o: \
  /home/caiof/vcpkg/installed/x64-linux/include/CGAL/Kernel/Type_equality_wrapper.h \
  /home/caiof/vcpkg/installed/x64-linux/include/CGAL/Kernel/interface_macros.h \
  /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/convex_hull.hpp \
+ /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/window.hpp \
  /mnt/c/Users/caiof/dev/convex_hull_3d/app/src/public/renderer.hpp

@@ -259,6 +259,30 @@ app/src/public/renderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/convex_hull_3d_lib.dir/build.make CMakeFiles/convex_hull_3d_lib.dir/app/src/public/renderer.cpp.s
 .PHONY : app/src/public/renderer.cpp.s
 
+app/src/public/window.o: app/src/public/window.cpp.o
+.PHONY : app/src/public/window.o
+
+# target to build an object file
+app/src/public/window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/convex_hull_3d_lib.dir/build.make CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.o
+.PHONY : app/src/public/window.cpp.o
+
+app/src/public/window.i: app/src/public/window.cpp.i
+.PHONY : app/src/public/window.i
+
+# target to preprocess a source file
+app/src/public/window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/convex_hull_3d_lib.dir/build.make CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.i
+.PHONY : app/src/public/window.cpp.i
+
+app/src/public/window.s: app/src/public/window.cpp.s
+.PHONY : app/src/public/window.s
+
+# target to generate assembly for a file
+app/src/public/window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/convex_hull_3d_lib.dir/build.make CMakeFiles/convex_hull_3d_lib.dir/app/src/public/window.cpp.s
+.PHONY : app/src/public/window.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -282,6 +306,9 @@ help:
 	@echo "... app/src/public/renderer.o"
 	@echo "... app/src/public/renderer.i"
 	@echo "... app/src/public/renderer.s"
+	@echo "... app/src/public/window.o"
+	@echo "... app/src/public/window.i"
+	@echo "... app/src/public/window.s"
 .PHONY : help
 
 
