@@ -6,6 +6,7 @@
 #include <set>
 #include <utility>
 #include <CGAL/Simple_cartesian.h>
+#include <random>
 #include "convex_hull.hpp"
 #include "window.hpp"
 
@@ -16,9 +17,19 @@ const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
 int main(int argc, char* argv[]) {
-    Window window(WINDOW_WIDTH, WINDOW_HEIGHT, "3D Polyhedron");
+    Window window(WINDOW_WIDTH, WINDOW_HEIGHT, "Trabalho 001 - CGAL Convex Hull");
 
-    auto hull = computeConvexHull();
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(-5.0, 5.0);
+
+    std::vector<Point_3> points;
+
+    // Generate 50 random points
+    for (int i = 0; i < 50; ++i) {
+        points.push_back(Point_3(dis(gen), dis(gen), dis(gen)));
+    }
+    auto hull = computeConvexHullFromOBJ("assets/15977_Sphere_with_Grid_v1.obj");
 
     std::set<std::pair<unsigned int, unsigned int>> edges;
     auto& vertices = std::get<0>(hull);

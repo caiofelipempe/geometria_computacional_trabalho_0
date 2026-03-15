@@ -1,31 +1,18 @@
 #include "convex_hull.hpp"
 #include <GL/glu.h>
-#include <random>
 #include <map>
 #include <CGAL/Simple_cartesian.h>
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/convex_hull_3.h>
 
 typedef CGAL::Simple_cartesian<double> K;
-typedef K::Point_3 Point_3;
 typedef CGAL::Polyhedron_3<K> Polyhedron;
 typedef Polyhedron::Vertex_handle Vertex_handle;
 typedef Polyhedron::Facet_handle Facet_handle;
 
-std::tuple<std::vector<float>, std::vector<std::vector<unsigned int>>> computeConvexHull() {
+std::tuple<std::vector<float>, std::vector<std::vector<unsigned int>>> computeConvexHull(std::vector<Point_3> points) {
     std::vector<float> hullVertices;
     std::vector<std::vector<unsigned int>> hullFaces;
-
-    std::vector<Point_3> points;
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(-5.0, 5.0);
-
-    // Generate 50 random points
-    for (int i = 0; i < 50; ++i) {
-        points.push_back(Point_3(dis(gen), dis(gen), dis(gen)));
-    }
-
     
     Polyhedron poly;
     CGAL::convex_hull_3(points.begin(), points.end(), poly);
@@ -54,4 +41,53 @@ std::tuple<std::vector<float>, std::vector<std::vector<unsigned int>>> computeCo
     }
 
     return {hullVertices, hullFaces};
+}
+
+std::tuple<std::vector<float>, std::vector<std::vector<unsigned int>>> computeConvexHullFromOBJ(const std::string& nomeArquivo) {
+    std::vector<Point_3> vertices;
+    std::ifstream arquivo(nomeArquivo);
+    
+    if (!arquivo.is_open()) {
+        throw std::runtime_error("Erro ao abrir o arquivo: " + nomeArquivo);
+    }
+    
+    std::string linha;
+    int linhaNumero = 0;
+    
+    while (std::getline(arquivo, linha)) {
+        linhaNumero++;
+        
+        // Remove espaços em branco no início e fim
+        linha.erase(0, linha.find_first_not_of(" \t\r\n"));
+        linha.erase(linha.find_last_not_of(" \t\r\n") + 1);
+        
+        // Ignora linhas vazias ou comentários
+        if (linha.empty() || linha[0] == '#') {
+            continue;
+        }
+        
+        // Verifica se é uma linha de vértice (começa com 'v')
+        if (linha.size() >= 1 && linha[0] == 'v') {
+            // Verifica se é um vértice geométrico (não é vt, vn, vp)
+            if (linha.size() >= 2 && (linha[1] == ' ' || linha[1] == '\t')) {
+                std::istringstream ss(linha.substr(1)); // Pula o 'v'
+                float x, y, z = 1.0f;
+                
+                // Tenta ler as coordenadas
+                ss >> x >> y >> z;
+                
+                vertices.push_back(Point_3(x, y, z));
+                
+                // Debug opcional
+                // std::cout << "Vértice lido na linha " << linhaNumero 
+                //           << ": v " << x << " " << y << " " << z 
+                //           << " " << w << std::endl;
+            }
+        }
+    }
+    
+    arquivo.close();
+    std::cout << "Total de vértices lidos: " << vertices.size() << std::endl;
+    
+    return computeConvexHull(vertices);
 }

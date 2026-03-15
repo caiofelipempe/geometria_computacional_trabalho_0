@@ -1,0 +1,11 @@
+{
+  "name": "convex-hull-3d",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "sdl2",
+    "opengl",
+    "cgal",
+    "glm",
+    "imgui"
+  ]
+}

@@ -1,1 +1,13 @@
+# CMake
 build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cbp
+
+# vcpkg
+vcpkg/
+vcpkg_installed/
+assets/
