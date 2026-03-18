@@ -1,5 +1,6 @@
 # CMake
 build/
+assets/
 cmake-build-*/
 CMakeCache.txt
 CMakeFiles/
@@ -10,4 +11,3 @@ Makefile
 # vcpkg
 vcpkg/
 vcpkg_installed/
-assets/

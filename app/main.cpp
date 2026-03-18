@@ -7,7 +7,7 @@
 #include <utility>
 #include <CGAL/Simple_cartesian.h>
 #include <random>
-#include "convex_hull.hpp"
+#include "convex_hull_compute.hpp"
 #include "window.hpp"
 
 typedef CGAL::Simple_cartesian<double> K;
@@ -29,47 +29,29 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < 50; ++i) {
         points.push_back(Point_3(dis(gen), dis(gen), dis(gen)));
     }
-    auto hull = computeConvexHullFromOBJ("assets/15977_Sphere_with_Grid_v1.obj");
-
-    std::set<std::pair<unsigned int, unsigned int>> edges;
-    auto& vertices = std::get<0>(hull);
-    auto& faces = std::get<1>(hull);
-    for (const auto& face : faces) {
-        for (size_t j = 0; j < face.size(); j++) {
-            unsigned int a = face[j], b = face[(j + 1) % face.size()];
-            if (a > b) std::swap(a, b);
-            edges.insert({a, b});
-        }
-    }
+    auto hulls = computeConvexHullFromOBJ("assets/boneco_de_neve.obj");
 
     float angle = 0.0f;
 
     window.run([&](float deltaTime, Renderer& renderer) {
         renderer.clear();
-        renderer.lookAt(15.0f * std::cos(angle), 15.0f, 15.0f * std::sin(angle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        renderer.drawPoligon(vertices, faces, 1.0f, 1.0f, 1.0f, 1.0f);
-        for (size_t i = 0; i < vertices.size(); i += 3) {
-            glPushMatrix();
-            glTranslatef(vertices[i], vertices[i+1], vertices[i+2]);
-            renderer.drawSphere(0.1f, 10, 10, 1.0f, 0.0f, 0.0f, 1.0f);
-            glPopMatrix();
-        }
-        for (const auto& edge : edges) {
-            unsigned int a = edge.first, b = edge.second;
-            float x1 = vertices[3 * a], y1 = vertices[3 * a + 1], z1 = vertices[3 * a + 2];
-            float x2 = vertices[3 * b], y2 = vertices[3 * b + 1], z2 = vertices[3 * b + 2];
-            float dx = x2 - x1, dy = y2 - y1, dz = z2 - z1;
-            float length = sqrt(dx * dx + dy * dy + dz * dz);
-            if (length < 1e-6) continue;
-            float vx = dx / length, vy = dy / length, vz = dz / length;
-            float dot = vz;
-            float rot_angle = acos(dot) * 180.0f / M_PI;
-            float axis_x = -vy, axis_y = vx, axis_z = 0.0f;
-            glPushMatrix();
-            glTranslatef(x1, y1, z1);
-            glRotatef(rot_angle, axis_x, axis_y, axis_z);
-            renderer.drawCylinder(0.02f, 0.02f, length, 8, 1, 0.0f, 0.0f, 1.0f, 1.0f);
-            glPopMatrix();
+        renderer.lookAt(15.0f * std::cos(angle), 10.0f, 15.0f * std::sin(angle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+
+        for(auto hull : hulls) {
+            auto& nome = std::get<0>(hull);
+            auto& vertices = std::get<0>(std::get<1>(hull));
+            auto& faces = std::get<1>(std::get<1>(hull));
+            if(nome == "olho_esquerdo" || nome == "olho_direito") {
+                renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
+            } else if(nome == "nariz") {
+                renderer.drawPoligon(vertices, faces, 0.8f, 0.5f, 0.1f, 1.0f);
+            } else if(nome == "chapeu_cima") {
+                renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
+            } else if(nome == "chapeu_baixo") {
+                renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
+            } else {
+                renderer.drawPoligon(vertices, faces, 0.8f, 0.8f, 0.8f, 1.0f);
+            }
         }
         angle += 0.01f;
     });
