@@ -61,3 +61,18 @@ void Renderer::drawCylinder(float baseRadius, float topRadius, float height, int
     gluCylinder(quad, baseRadius, topRadius, height, slices, stacks);
     gluDeleteQuadric(quad);
 }
+
+void Renderer::drawPoint(float x, float y, float z, float r, float g, float b, float a) {
+    glColor4f(r, g, b, a);
+    glBegin(GL_POINTS);
+    glVertex3f(x, y, z);
+    glEnd();
+}
+
+void Renderer::drawLine(float x1, float y1, float z1, float x2, float y2, float z2, float r, float g, float b, float a) {
+    glColor4f(r, g, b, a);
+    glBegin(GL_LINES);
+    glVertex3f(x1, y1, z1);
+    glVertex3f(x2, y2, z2);
+    glEnd();
+}

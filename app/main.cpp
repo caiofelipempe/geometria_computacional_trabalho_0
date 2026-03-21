@@ -32,6 +32,8 @@ int main(int argc, char* argv[]) {
     auto hulls = computeConvexHullFromOBJ("assets/boneco_de_neve.obj");
 
     float angle = 0.0f;
+    bool drawPoints = true;
+    bool drawLines = true;
 
     window.run([&](float deltaTime, Renderer& renderer) {
         renderer.clear();
@@ -51,6 +53,31 @@ int main(int argc, char* argv[]) {
                 renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
             } else {
                 renderer.drawPoligon(vertices, faces, 0.8f, 0.8f, 0.8f, 1.0f);
+            }
+
+            if (drawPoints) {
+                for (size_t i = 0; i < vertices.size(); i += 3) {
+                    renderer.drawPoint(vertices[i], vertices[i+1], vertices[i+2], 1.0f, 0.0f, 0.0f, 1.0f);
+                }
+            }
+
+            if (drawLines) {
+                for (const auto& face : faces) {
+                    for (size_t i = 0; i < face.size(); ++i) {
+                        unsigned int idx1 = face[i];
+                        unsigned int idx2 = face[(i + 1) % face.size()];
+
+                        float x1 = vertices[idx1 * 3];
+                        float y1 = vertices[idx1 * 3 + 1];
+                        float z1 = vertices[idx1 * 3 + 2];
+
+                        float x2 = vertices[idx2 * 3];
+                        float y2 = vertices[idx2 * 3 + 1];
+                        float z2 = vertices[idx2 * 3 + 2];
+
+                        renderer.drawLine(x1, y1, z1, x2, y2, z2, 0.0f, 1.0f, 0.0f, 1.0f);
+                    }
+                }
             }
         }
         angle += 0.01f;
