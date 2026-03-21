@@ -49,20 +49,23 @@ void Window::swapBuffers() {
     SDL_GL_SwapWindow(window);
 }
 
-bool Window::pollEvents() {
+bool Window::pollEvents(std::function<void(int, SDL_KeyCode)> keyboard) {
     SDL_Event e;
     while (SDL_PollEvent(&e) != 0) {
         if (e.type == SDL_QUIT) {
             return false;
+        } else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
+            int keyState = (e.type == SDL_KEYDOWN) ? 1 : 0;
+            keyboard(keyState, (SDL_KeyCode)e.key.keysym.sym);
         }
     }
     return true;
 }
 
-void Window::run(std::function<void(float, Renderer&)> update) {
+void Window::run(std::function<void(float, Renderer&)> update, std::function<void(int, SDL_KeyCode)> keyboard) {
     Renderer renderer;
     Uint32 lastTime = SDL_GetTicks();
-    while (pollEvents()) {
+    while (pollEvents(keyboard)) {
         Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;

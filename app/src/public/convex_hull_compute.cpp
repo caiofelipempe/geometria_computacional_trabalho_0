@@ -104,3 +104,29 @@ std::vector<std::tuple<std::string, std::tuple<std::vector<float>, std::vector<s
     
     return hulls;
 }
+
+std::vector<Point_3> readOBJPoints(const std::string& filename) {
+    std::vector<Point_3> points;
+    std::ifstream file(filename);
+    
+    if (!file.is_open()) {
+        std::cerr << "Erro ao abrir arquivo: " << filename << std::endl;
+        return points;
+    }
+    
+    std::string line;
+    while (std::getline(file, line)) {
+        // Verificar se a linha começa com 'v ' (vértice)
+        if (line.size() >= 2 && line[0] == 'v' && line[1] == ' ') {
+            std::stringstream ss(line.substr(2));
+            float x, y, z;
+            ss >> x >> y >> z;
+            points.push_back({x, y, z});
+        }
+    }
+    
+    file.close();
+    std::cout << "Carregados " << points.size() << " pontos do arquivo." << std::endl;
+    
+    return points;
+}

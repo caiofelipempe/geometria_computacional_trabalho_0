@@ -13,12 +13,12 @@ private:
     SDL_GLContext context;
 
     void swapBuffers();
-    bool pollEvents();
+    bool pollEvents(std::function<void(int, SDL_KeyCode)> keyboard);
 
 public:
     Window(int width, int height, const char* title);
     ~Window();
-    void run(std::function<void(float, Renderer&)> update);
+    void run(std::function<void(float, Renderer&)> update, std::function<void(int, SDL_KeyCode)> keyboard);
 };
 
 #endif // WINDOW_HPP

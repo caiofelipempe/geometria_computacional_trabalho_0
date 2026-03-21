@@ -22,42 +22,48 @@ int main(int argc, char* argv[]) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(-5.0, 5.0);
-
-    std::vector<Point_3> points;
-
-    // Generate 50 random points
-    for (int i = 0; i < 50; ++i) {
-        points.push_back(Point_3(dis(gen), dis(gen), dis(gen)));
-    }
-    auto hulls = computeConvexHullFromOBJ("assets/boneco_de_neve.obj");
+    
+    auto hulls = computeConvexHullFromOBJ("assets/entrada.obj");
+    auto points = readOBJPoints("assets/entrada.obj");
 
     float angle = 0.0f;
-    bool drawPoints = true;
-    bool drawLines = true;
+    bool drawPoints = false;
+    bool drawVertices = false;
+    bool drawLines = false;
+    bool drwFaces = true;
 
     window.run([&](float deltaTime, Renderer& renderer) {
         renderer.clear();
         renderer.lookAt(15.0f * std::cos(angle), 10.0f, 15.0f * std::sin(angle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
+        if (drawPoints) {
+            for (size_t i = 0; i < points.size(); i += 3) {
+                renderer.drawSphere(points[i].x(), points[i].y(), points[i].z(), 0.05f, 4, 4, 1.0f, 0.0f, 0.0f, 1.0f);
+            }
+        }
+
         for(auto hull : hulls) {
             auto& nome = std::get<0>(hull);
             auto& vertices = std::get<0>(std::get<1>(hull));
             auto& faces = std::get<1>(std::get<1>(hull));
-            if(nome == "olho_esquerdo" || nome == "olho_direito") {
-                renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
-            } else if(nome == "nariz") {
-                renderer.drawPoligon(vertices, faces, 0.8f, 0.5f, 0.1f, 1.0f);
-            } else if(nome == "chapeu_cima") {
-                renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
-            } else if(nome == "chapeu_baixo") {
-                renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
-            } else {
-                renderer.drawPoligon(vertices, faces, 0.8f, 0.8f, 0.8f, 1.0f);
+
+            if(drwFaces) {
+                if(nome == "olho_esquerdo" || nome == "olho_direito") {
+                    renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
+                } else if(nome == "nariz") {
+                    renderer.drawPoligon(vertices, faces, 0.8f, 0.5f, 0.1f, 1.0f);
+                } else if(nome == "chapeu_cima") {
+                    renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
+                } else if(nome == "chapeu_baixo") {
+                    renderer.drawPoligon(vertices, faces, 0.1f, 0.1f, 0.1f, 1.0f);
+                } else {
+                    renderer.drawPoligon(vertices, faces, 0.8f, 0.8f, 0.8f, 1.0f);
+                }
             }
 
-            if (drawPoints) {
+            if (drawVertices) {
                 for (size_t i = 0; i < vertices.size(); i += 3) {
-                    renderer.drawSphere(vertices[i], vertices[i+1], vertices[i+2], 0.05f, 4, 4, 1.0f, 0.0f, 0.0f, 1.0f);
+                    renderer.drawSphere(vertices[i], vertices[i+1], vertices[i+2], 0.05f, 4, 4, 1.0f, 1.0f, 0.0f, 1.0f);
                 }
             }
 
@@ -81,6 +87,20 @@ int main(int argc, char* argv[]) {
             }
         }
         angle += 0.01f;
+    }, [&](int keyState, SDL_KeyCode key) {
+        if (keyState == 1) {
+            if (key == SDLK_p) {
+                drawPoints = !drawPoints;
+            } else if (key == SDLK_l) {
+                drawLines = !drawLines;
+            }
+            else if (key == SDLK_f) {
+                drwFaces = !drwFaces;
+            }
+            else if (key == SDLK_v) {
+                drawVertices = !drawVertices;
+            }
+        }
     });
 
     return 0;
