@@ -30,11 +30,14 @@ void Renderer::drawPoligon(std::vector<float> hullVertices, std::vector<std::vec
     glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void Renderer::drawSphere(float radius, int slices, int stacks, float r, float g, float b, float a) {
+void Renderer::drawSphere(float x, float y, float z, float radius, int slices, int stacks, float r, float g, float b, float a) {
+    glPushMatrix();
+    glTranslatef(x, y, z);
     glColor4f(r, g, b, a);
     GLUquadric* quad = gluNewQuadric();
     gluSphere(quad, radius, slices, stacks);
     gluDeleteQuadric(quad);
+                glPopMatrix();
 }
 
 void Renderer::drawCapsule(float radius, float height, int slices, int stacks, float r, float g, float b, float a) {

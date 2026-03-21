@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
 
             if (drawPoints) {
                 for (size_t i = 0; i < vertices.size(); i += 3) {
-                    renderer.drawPoint(vertices[i], vertices[i+1], vertices[i+2], 1.0f, 0.0f, 0.0f, 1.0f);
+                    renderer.drawSphere(vertices[i], vertices[i+1], vertices[i+2], 0.05f, 4, 4, 1.0f, 0.0f, 0.0f, 1.0f);
                 }
             }
 
