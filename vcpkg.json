@@ -4,8 +4,6 @@
   "dependencies": [
     "sdl2",
     "opengl",
-    "cgal",
-    "glm",
-    "imgui"
+    "cgal"
   ]
 }

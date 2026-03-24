@@ -10,9 +10,6 @@ find_package(SDL2 REQUIRED)
 # Find OpenGL
 find_package(OpenGL REQUIRED)
 
-# Find GLM
-# find_package(glm CONFIG REQUIRED)
-
 # Find CGAL
 find_package(CGAL REQUIRED)
 
