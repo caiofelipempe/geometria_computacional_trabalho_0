@@ -39,20 +39,24 @@ def build():
             return False
     return run_command("cmake --build build")
 
-def run_app():
+def run_app(object_model_path=None):
     """Run the application"""
     print("Running application...")
-    return run_command("./build/convex_hull_3d")
+    cmd = "./build/convex_hull_3d"
+    if object_model_path:
+        cmd += f" {object_model_path}"
+    return run_command(cmd)
 
-def build_and_run():
+def build_and_run(object_model_path=None):
     """Build and run"""
     if build():
-        return run_app()
+        return run_app(object_model_path)
     return False
 
 def main():
     parser = argparse.ArgumentParser(description="Build and run script for convex_hull_3d")
     parser.add_argument('action', choices=['build', 'clean', 'run', 'build-run'], help='Action to perform')
+    parser.add_argument('--model', help='Path to the OBJ model file')
 
     args = parser.parse_args()
 
@@ -61,9 +65,9 @@ def main():
     elif args.action == 'build':
         success = build()
     elif args.action == 'run':
-        success = run_app()
+        success = run_app(object_model_path=args.model)
     elif args.action == 'build-run':
-        success = build_and_run()
+        success = build_and_run(object_model_path=args.model)
     else:
         print("Invalid action")
         success = False

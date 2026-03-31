@@ -17,7 +17,7 @@ std::tuple<std::vector<float>, std::vector<std::vector<unsigned int>>> computeCo
     Polyhedron poly;
     CGAL::convex_hull_3(points.begin(), points.end(), poly);
 
-    // Extract vertices
+    // Extrair vértices
     hullVertices.clear();
     std::map<Vertex_handle, unsigned int> vertexIndex;
     unsigned int idx = 0;
@@ -28,7 +28,7 @@ std::tuple<std::vector<float>, std::vector<std::vector<unsigned int>>> computeCo
         vertexIndex[v] = idx++;
     }
 
-    // Extract faces
+    // Extrair faces
     hullFaces.clear();
     for (auto f = poly.facets_begin(); f != poly.facets_end(); ++f) {
         std::vector<unsigned int> face;

@@ -17,6 +17,11 @@ const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
 int main(int argc, char* argv[]) {
+    std::string objectModelPath = "models/boneco_de_neve.obj";
+    if (argc > 1) {
+        objectModelPath = argv[1];
+    }
+
     Window window(WINDOW_WIDTH, WINDOW_HEIGHT, "Trabalho 001 - CGAL Convex Hull");
 
     std::random_device rd;
@@ -29,8 +34,8 @@ int main(int argc, char* argv[]) {
     }
     auto randomHull = computeConvexHull(randomPoints);
     
-    auto hulls = computeConvexHullFromOBJ("assets/entrada.obj");
-    auto points = readOBJPoints("assets/entrada.obj");
+    auto hulls = computeConvexHullFromOBJ(objectModelPath);
+    auto points = readOBJPoints(objectModelPath);
 
     float angle = 0.0f;
     bool drawRandomHull = false;
